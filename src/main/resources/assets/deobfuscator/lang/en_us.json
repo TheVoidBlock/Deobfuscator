@@ -1,0 +1,5 @@
+{
+  "key.deobfuscator.toggle": "Toggle Text Deobfuscation",
+  "category.deobfuscator.main": "Deobfuscator",
+  "text.deobfuscator.toggle": "Toggled deobfuscation %s"
+}

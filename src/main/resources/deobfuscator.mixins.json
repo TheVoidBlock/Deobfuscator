@@ -4,6 +4,7 @@
   "package": "io.github.thevoidblock.deobfuscator.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "StyleMixin"
   ],
   "client": [
   ],

@@ -11,9 +11,6 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "io.github.thevoidblock.deobfuscator.client.DeobfuscatorClient"
-    ],
-    "main": [
       "io.github.thevoidblock.deobfuscator.Deobfuscator"
     ]
   },
