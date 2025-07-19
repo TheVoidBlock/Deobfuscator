@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "deobfuscator",
+  "version": "${version}",
+  "name": "Deobfuscator",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/deobfuscator/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.thevoidblock.deobfuscator.client.DeobfuscatorClient"
+    ],
+    "main": [
+      "io.github.thevoidblock.deobfuscator.Deobfuscator"
+    ]
+  },
+  "mixins": [
+    "deobfuscator.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
