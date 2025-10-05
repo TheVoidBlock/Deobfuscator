@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(Style.class)
 public class StyleMixin {
     @ModifyReturnValue(method = "isObfuscated", at = @At(value = "RETURN"))
-    boolean diableObfuscation(boolean original) {
+    boolean disableObfuscation(boolean original) {
         if(Deobfuscator.ENABLED) return false;
         return original;
     }
