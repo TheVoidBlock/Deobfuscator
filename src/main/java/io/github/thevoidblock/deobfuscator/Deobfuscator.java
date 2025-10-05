@@ -9,6 +9,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import static java.lang.String.format;
@@ -25,7 +26,7 @@ public class Deobfuscator implements ClientModInitializer {
                 format("key.%s.toggle", MOD_ID),
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_SEMICOLON,
-                format("category.%s.main", MOD_ID)
+                KeyBinding.Category.create(Identifier.of(MOD_ID, "main"))
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
