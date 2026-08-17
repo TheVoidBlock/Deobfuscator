@@ -2,7 +2,7 @@ package io.github.thevoidblock.deobfuscator.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import io.github.thevoidblock.deobfuscator.Deobfuscator;
-import net.minecraft.text.Style;
+import net.minecraft.network.chat.Style;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 

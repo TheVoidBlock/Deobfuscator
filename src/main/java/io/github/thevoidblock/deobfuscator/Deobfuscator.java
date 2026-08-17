@@ -2,14 +2,14 @@ package io.github.thevoidblock.deobfuscator;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.KeyMapping;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import static java.lang.String.format;
@@ -18,29 +18,29 @@ public class Deobfuscator implements ClientModInitializer {
 
     private static final String MOD_ID = "deobfuscator";
     public static boolean ENABLED = false;
-    private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
+    private static final Minecraft CLIENT = Minecraft.getInstance();
 
     @Override
     public void onInitializeClient() {
-        KeyBinding toggleBind = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        KeyMapping toggleBind = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 format("key.%s.toggle", MOD_ID),
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_SEMICOLON,
-                KeyBinding.Category.create(Identifier.of(MOD_ID, "main"))
+                KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MOD_ID, "main"))
         ));
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(toggleBind.wasPressed()) {
+        ClientTickEvents.END_CLIENT_TICK.register(_ -> {
+            if(toggleBind.consumeClick()) {
                 ENABLED = !ENABLED;
                 if (CLIENT.player != null) {
-                    CLIENT.player.sendMessage(Text.translatable(format("text.%s.toggle", MOD_ID), styleBoolean(ENABLED)), true);
+                    CLIENT.player.sendOverlayMessage(Component.translatable(format("text.%s.toggle", MOD_ID), styleBoolean(ENABLED)));
                 }
             }
         });
     }
 
-    private static Text styleBoolean(boolean value) {
-        MutableText text = Text.literal(value ? "ON" : "OFF");
-        return text.formatted(value ? Formatting.GREEN : Formatting.RED);
+    private static MutableComponent styleBoolean(boolean value) {
+        MutableComponent text = Component.literal(value ? "ON" : "OFF");
+        return text.withStyle(value ? ChatFormatting.GREEN : ChatFormatting.RED);
     }
 }
