@@ -10,7 +10,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 import static java.lang.String.format;
 
@@ -24,8 +23,8 @@ public class Deobfuscator implements ClientModInitializer {
     public void onInitializeClient() {
         KeyMapping toggleBind = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 format("key.%s.toggle", MOD_ID),
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_SEMICOLON,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_SEMICOLON,
                 KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MOD_ID, "main"))
         ));
 

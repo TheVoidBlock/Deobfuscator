@@ -6,8 +6,6 @@
   "mixins": [
     "StyleMixin"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   },
